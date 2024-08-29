@@ -1,0 +1,103 @@
+create database StudentManagementSystem;
+Query OK, 1 row affected (0.01 sec)
+
+create table Student(StudentID varchar(10) NOT NULL primary key, FirstName varchar(100) NOT NULL, LastName varchar(100) NOT NULL, DateOfBirth varchar(20) NOT NULL, Gender varchar(10) NOT NULL, Email varchar(20) NOT NULL,  Phone int NOT NULL);
+Query OK, 0 rows affected (0.02 sec)
+
+desc Student;
++-------------+--------------+------+-----+---------+-------+
+| Field       | Type         | Null | Key | Default | Extra |
++-------------+--------------+------+-----+---------+-------+
+| StudentID   | varchar(10)  | NO   | PRI | NULL    |       |
+| FirstName   | varchar(100) | NO   |     | NULL    |       |
+| LastName    | varchar(100) | NO   |     | NULL    |       |
+| DateOfBirth | varchar(20)  | NO   |     | NULL    |       |
+| Gender      | varchar(10)  | NO   |     | NULL    |       |
+| Email       | varchar(20)  | NO   |     | NULL    |       |
+| Phone       | int          | NO   |     | NULL    |       |
++-------------+--------------+------+-----+---------+-------+
+7 rows in set (0.00 sec)
+
+
+create table Course(CourseID varchar(10) NOT NULL primary key, CourseTitle varchar(30) NOT NULL, Credits int NOT NULL);
+Query OK, 0 rows affected (0.01 sec)
+
+desc Course;
++-------------+-------------+------+-----+---------+-------+
+| Field       | Type        | Null | Key | Default | Extra |
++-------------+-------------+------+-----+---------+-------+
+| CourseID    | varchar(10) | NO   | PRI | NULL    |       |
+| CourseTitle | varchar(30) | NO   |     | NULL    |       |
+| Credits     | int         | NO   |     | NULL    |       |
++-------------+-------------+------+-----+---------+-------+
+3 rows in set (0.00 sec)
+
+
+create table Instructor(InstructorID varchar(10) NOT NULL primary key, FirstName varchar(30) NOT NULL, LastName varchar(30) NOT NULL, Email varchar(30) NOT NULL);
+Query OK, 0 rows affected (0.02 sec)
+
+desc Instructor;
++--------------+-------------+------+-----+---------+-------+
+| Field        | Type        | Null | Key | Default | Extra |
++--------------+-------------+------+-----+---------+-------+
+| InstructorID | varchar(10) | NO   | PRI | NULL    |       |
+| FirstName    | varchar(30) | NO   |     | NULL    |       |
+| LastName     | varchar(30) | NO   |     | NULL    |       |
+| Email        | varchar(30) | NO   |     | NULL    |       |
++--------------+-------------+------+-----+---------+-------+
+4 rows in set (0.00 sec)
+
+
+create table Enrollment(EnromentID varchar(10) NOT NULL primary key, EnrollmentDate varchar(10), StudentID varchar(10) NOT NULL, CourseID varchar(10) NOT NULL, InstructorID varchar(10) NOT NULL, FOREIGN KEY (StudentID) REFERENCES Student(StudentID), FOREIGN KEY (CourseID) REFERENCES Course(Course
+ID), FOREIGN KEY (InstructorID) REFERENCES Instructor(InstructorID));
+Query OK, 0 rows affected (0.03 sec)
+
+desc Enrollment;
++----------------+-------------+------+-----+---------+-------+
+| Field          | Type        | Null | Key | Default | Extra |
++----------------+-------------+------+-----+---------+-------+
+| EnromentID     | varchar(10) | NO   | PRI | NULL    |       |
+| EnrollmentDate | varchar(10) | YES  |     | NULL    |       |
+| StudentID      | varchar(10) | NO   | MUL | NULL    |       |
+| CourseID       | varchar(10) | NO   | MUL | NULL    |       |
+| InstructorID   | varchar(10) | NO   | MUL | NULL    |       |
++----------------+-------------+------+-----+---------+-------+
+5 rows in set (0.00 sec)
+
+
+create table Score(ScoreID varchar(10) NOT NULL, CourseID varchar(10)
+NOT NULL, StudentID varchar(10) NOT NULL, DateOfExam varchar(10) NOT NULL,
+CreditObtained int NOT NULL, FOREIGN KEY (CourseID) REFERENCES Course(Course
+Id), FOREIGN KEY (StudentId) REFERENCES Student(StudentID));
+Query OK, 0 rows affected (0.04 sec)
+
+desc Score;
++----------------+-------------+------+-----+---------+-------+
+| Field          | Type        | Null | Key | Default | Extra |
++----------------+-------------+------+-----+---------+-------+
+| ScoreID        | varchar(10) | NO   |     | NULL    |       |
+| CourseID       | varchar(10) | NO   | MUL | NULL    |       |
+| StudentID      | varchar(10) | NO   | MUL | NULL    |       |
+| DateOfExam     | varchar(10) | NO   |     | NULL    |       |
+| CreditObtained | int         | NO   |     | NULL    |       |
++----------------+-------------+------+-----+---------+-------+
+5 rows in set (0.00 sec)
+
+
+create table Feedback(FeedbackID varchar(10) NOT NULL primary key, St
+udentID varchar(10) NOT NULL, Date varchar(10) NOT NULL, InstructorName varc
+har(30) NOT NULL, Feedback varchar(100) NOT NULL, FOREIGN KEY (StudentID) RE
+FERENCES Student(StudentID));
+Query OK, 0 rows affected (0.03 sec)
+
+desc Feedback;
++----------------+--------------+------+-----+---------+-------+
+| Field          | Type         | Null | Key | Default | Extra |
++----------------+--------------+------+-----+---------+-------+
+| FeedbackID     | varchar(10)  | NO   | PRI | NULL    |       |
+| StudentID      | varchar(10)  | NO   | MUL | NULL    |       |
+| Date           | varchar(10)  | NO   |     | NULL    |       |
+| InstructorName | varchar(30)  | NO   |     | NULL    |       |
+| Feedback       | varchar(100) | NO   |     | NULL    |       |
++----------------+--------------+------+-----+---------+-------+
+5 rows in set (0.00 sec)
