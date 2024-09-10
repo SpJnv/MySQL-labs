@@ -1,0 +1,70 @@
+Creating a Employee table: 
+
+create table Employee(imp_id varchar(10) NOT NULL primary key, firstName varchar(20) NOT NULL, lastName varchar(2
+0) NOT NULL, age int NOT NULL, email varchar(30) NOT NULL);
+Query OK, 0 rows affected (0.04 sec)
+
+showing description:
+
+ desc Employee;
++-----------+-------------+------+-----+---------+-------+
+| Field     | Type        | Null | Key | Default | Extra |
++-----------+-------------+------+-----+---------+-------+
+| imp_id    | varchar(10) | NO   | PRI | NULL    |       |
+| firstName | varchar(20) | NO   |     | NULL    |       |
+| lastName  | varchar(20) | NO   |     | NULL    |       |
+| age       | int         | NO   |     | NULL    |       |
+| email     | varchar(30) | NO   |     | NULL    |       |
++-----------+-------------+------+-----+---------+-------+
+5 rows in set (0.02 sec)
+
+inserting the values into table:
+
+insert into Employee values("E101", "shivam", "pal", 20, "shivam703@gmail.com"), ("E102", "Abhishek", "Prajapati", 27, "abhi245@gamil.com"), ("E103", "Ankur", "singh", 33, "ankutsingh67@gmail.com");
+Query OK, 3 row affected (0.02 sec)
+
+select * from Employee;
++--------+-----------+-----------+-----+---------------------------+
+| imp_id | firstName | lastName  | age | email                     |
++--------+-----------+-----------+-----+---------------------------+
+| E101   | shivam    | pal       |  20 | shivampaljnv703@gmail.com |
+| E102   | Abhisek   | Prajapati |  27 | abhi245@gmail.com         |
+| E103   | Ankur     | singh     |  33 | ankutsingh67@gmail.com    |
++--------+-----------+-----------+-----+---------------------------+
+
+
+firstName and lastName:
+
+select firstName, lastName from Employee;
++-----------+-----------+
+| firstName | lastName  |
++-----------+-----------+
+| shivam    | pal       |
+| Abhisek   | Prajapati |
+| Ankur     | singh     |
++-----------+-----------+
+3 rows in set (0.00 sec)
+
+first name and last name where age is greater than 30:
+
+select firstName, lastName, age from Employee where age > 30;
++-----------+----------+-----+
+| firstName | lastName | age |
++-----------+----------+-----+
+| Ankur     | singh    |  33 |
++-----------+----------+-----+
+1 row in set (0.00 sec)
+
+update Employee set age = age+1 where age > 25;
+Query OK, 2 rows affected (0.01 sec)
+Rows matched: 2  Changed: 2  Warnings: 0
+
+mysql> select * from Employee;
++--------+-----------+-----------+-----+---------------------------+
+| imp_id | firstName | lastName  | age | email                     |
++--------+-----------+-----------+-----+---------------------------+
+| E101   | shivam    | pal       |  20 | shivampaljnv703@gmail.com |
+| E102   | Abhisek   | Prajapati |  28 | abhi245@gmail.com         |
+| E103   | Ankur     | singh     |  34 | ankutsingh67@gmail.com    |
++--------+-----------+-----------+-----+---------------------------+
+3 rows in set (0.00 sec)
